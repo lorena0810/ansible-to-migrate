@@ -1,8 +1,8 @@
 ---
 # This playbook will install mysql and create db user and give permissions.
-
+# Se cambia yum por atp
 - name: Install Mysql package
-  yum: name={{ item }} state=installed
+  atp: name={{ item }} state=installed
   with_items:
    - mysql-server
    - MySQL-python
