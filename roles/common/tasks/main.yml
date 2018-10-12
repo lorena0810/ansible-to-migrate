@@ -15,8 +15,9 @@
   service: name=ntp state=started enabled=yes
   tags: ntp
 
-#Error
-- name: test to see if selinux is running
-  command: getenforce
-  register: sestatus
-  changed_when: false
+#Error #esto para ubuntu no sirve 
+#- name: test to see if selinux is running
+#command: getenforce
+#register: sestatus
+#changed_when: false
+
