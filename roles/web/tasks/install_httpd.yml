@@ -1,8 +1,10 @@
 ---
 # These tasks install http and the php modules.
-
+#Cambiar yum por apt
+#lib-semanage es para centos ubuntu es python-semanage y
+#libselinux-python por python-selinux
 - name: Install http and php etc
-  yum: name={{ item }} state=present
+  apt: name={{ item }} state=present update_cache=yes
   with_items:
    - httpd
    - php
