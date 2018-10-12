@@ -1,19 +1,21 @@
----
+--
 # This playbook contains common plays that will be run on all nodes.
-
+#Cambiar yum por apt- name: Install ntp
 - name: Install ntp
-  yum: name=ntp state=present
+  apt: name=ntp state=present
   tags: ntp
 
 - name: Configure ntp file
   template: src=ntp.conf.j2 dest=/etc/ntp.conf
   tags: ntp
   notify: restart ntp
-
+  
+#Error nptd asi no se llama el servicio es npt- name: Start the ntp service
 - name: Start the ntp service
-  service: name=ntpd state=started enabled=yes
+  service: name=ntp state=started enabled=yes
   tags: ntp
 
+#Error
 - name: test to see if selinux is running
   command: getenforce
   register: sestatus
