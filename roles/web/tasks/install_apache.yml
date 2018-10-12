@@ -1,6 +1,8 @@
 ---
 # These tasks install apache and the php modules.
-
+#comenzamos la instalación propiamente dicha de nuestro nuevo php.
+#Instalamos los requerimientos y paquetes a utilizar 
+#Instalamos apache y inicimaos el servicio 
 
 - name: Instalando PHP y modulos requeridos
   apt:
