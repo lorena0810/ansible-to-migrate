@@ -1,24 +1,12 @@
-<html>
- <head>
-  <title>Ansible Application</title>
- </head>
- <body>
- </br>
-  <a href=http://{{ ansible_default_ipv4.address }}/index.html>Homepage</a>
- </br>
-<?php 
- Print "Hello, World! I am a web server configured using Ansible and I am : ";
- echo exec('hostname');
- Print  "</BR>";
-echo  "List of Databases: </BR>";
-        {% for host in groups['dbservers'] %}
-                $link = mysqli_connect('{{ hostvars[host].ansible_default_ipv4.address }}', '{{ hostvars[host].dbuser }}', '{{ hostvars[host].upassword }}') or die(mysqli_connect_error($link));
-        {% endfor %}
-        $res = mysqli_query($link, "SHOW DATABASES;");
-        while ($row = mysqli_fetch_assoc($res)) {
-                echo $row['Database'] . "\n";
-        }
-?>
-</body>
-</html>
 
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+port={{ mysql_port }}
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
