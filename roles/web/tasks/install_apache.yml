@@ -1,23 +1,28 @@
 ---
-# These tasks install apache and the php modules.
-#comenzamos la instalación propiamente dicha de nuestro nuevo php.
-#Instalamos los requerimientos y paquetes a utilizar 
+# These tasks install http and the php modules.
+#Cambiar yum por apt
+#lib-semanage es para centos ubuntu es python-semanage y
+#libselinux-python por python-selinux
+#- name: Install http and php etc
+# apt: name={{ item }} state=present update_cache=yes
+ # with_items:
+  # - httpd
+   #- php
+   #- php-mysql
+  # - git
+  # - libsemanage-python
+   #- libselinux-python
+
+#notify: restart iptables
+
+#- name: http service state
+# service: name=httpd state=started enabled=yes
+
+#- name: Configure SELinux to allow httpd to connect to remote database
+ # seboolean: name=httpd_can_network_connect_db state=true persistent=yes
+ # when: sestatus.rc != 0
+ 
 #Instalamos apache y inicimaos el servicio 
-
-- name: Instalando PHP y modulos requeridos
-  apt:
-    name: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-    - php7.0-json
-    - php7.0-mbstring
-    - php7.0-intl
-    - php7.0-xml
-    - php7.0-mysql
-    - libapache2-mod-php7.0
-    - git
-
 
 - name: Instalando Apache
   apt:
